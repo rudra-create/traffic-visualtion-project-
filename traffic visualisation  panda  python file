@@ -1,0 +1,32 @@
+import folium
+from folium.plugins import HeatMap
+import pandas as pd
+
+
+# Sample data: List of [latitude, longitude, intensity]
+data = [
+    [28.6139, 77.3723, 10],  # Raj Nagar, Ghaziabad
+    [28.6100, 77.3670, 20],  # Mohan Nagar, Ghaziabad
+    [28.6125, 77.4260, 30],  # Vasundhara, Ghaziabad
+    [28.6105, 77.4380, 25],  # Jawar Gate, Ghaziabad
+]
+
+
+# Convert the data into a DataFrame
+df = pd.DataFrame(data, columns=['Latitude', 'Longitude', 'Intensity'])
+
+
+# Create a base map
+m = folium.Map(location=[37.7749, -122.4194], zoom_start=4)
+
+
+# Prepare data for the heatmap
+heat_data = [[row['Latitude'], row['Longitude'], row['Intensity']] for index, row in df.iterrows()]
+
+
+# Create a heatmap layer
+HeatMap(heat_data).add_to(m)
+
+
+# Display the map
+m
