@@ -1,3 +1,5 @@
+pip install folium pandas
+
 import folium
 from folium.plugins import HeatMap
 import pandas as pd
